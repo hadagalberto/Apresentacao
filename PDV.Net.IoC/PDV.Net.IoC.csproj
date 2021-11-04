@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PDV.Net.Domain\PDV.Net.Domain.csproj" />
+    <ProjectReference Include="..\PDV.Net.Infra.Data\PDV.Net.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>

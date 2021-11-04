@@ -1,13 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using PDV.Net.Domain.Interface.Repository;
 using PDV.Net.Infra.Data.Context;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PDV.Net.Domain.Entity;
 
 namespace PDV.Net.Infra.Data.Repository
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
-        where TEntity : class
+        where TEntity : BaseEntity
     {
         protected DbContext Context { get; }
         protected DbSet<TEntity> EntitySet => Context.Set<TEntity>();
@@ -25,7 +27,7 @@ namespace PDV.Net.Infra.Data.Repository
             await Context.SaveChangesAsync();
         }
 
-        public virtual async Task<TEntity> GetAsync(long id)
+        public virtual async Task<TEntity> GetAsync(Guid id)
         {
             TEntity entity = await EntitySet.FindAsync(id);
             return entity;
@@ -41,7 +43,7 @@ namespace PDV.Net.Infra.Data.Repository
         public virtual async Task UpdateAsync(TEntity entity)
         {
             if (!IsAttached(entity))
-                EntitySet.Add(entity);
+                EntitySet.Update(entity);
             int num = await Context.SaveChangesAsync();
         }
 

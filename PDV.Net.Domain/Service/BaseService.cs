@@ -1,14 +1,17 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using PDV.Net.Domain.Interface.Repository;
 using PDV.Net.Domain.Interface.Service;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PDV.Net.Domain.DTO;
+using PDV.Net.Domain.Entity;
 
 namespace PDV.Net.Domain.Service
 {
     public abstract class BaseService<TViewModel, TEntity> : IBaseService<TViewModel, TEntity>
-        where TViewModel : class
-        where TEntity : class
+        where TViewModel : BaseDTO
+        where TEntity : BaseEntity
     {
 
         private readonly IBaseRepository<TEntity> _repository;
@@ -30,7 +33,7 @@ namespace PDV.Net.Domain.Service
             await _repository.DeleteAsync(_mapper.Map<TEntity>(entity));
         }
 
-        public async Task<TViewModel> GetAsync(long id)
+        public async Task<TViewModel> GetAsync(Guid id)
         {
             return _mapper.Map<TViewModel>(await _repository.GetAsync(id));
         }

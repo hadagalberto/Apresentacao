@@ -1,6 +1,11 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using PDV.Net.Domain.DTO;
+using PDV.Net.Domain.Entity;
+using PDV.Net.Domain.Interface.Repository;
+using PDV.Net.Domain.Interface.Service;
+using PDV.Net.Domain.Service;
+using PDV.Net.Infra.Data.Repository;
 
 namespace PDV.Net.IoC
 {
@@ -10,16 +15,17 @@ namespace PDV.Net.IoC
         {
 
             // Service
-            
+            services.AddScoped<IProdutoService, ProdutoService>();
 
             // Repository
-
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             // AutoMapper
 
             var mapperConfig = new MapperConfiguration(mapperConfig =>
             {
-
+                mapperConfig.CreateMap<Produto, ProdutoDTO>()
+                    .ReverseMap();
             });
 
             IMapper mapper = mapperConfig.CreateMapper();

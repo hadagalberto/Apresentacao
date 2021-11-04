@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using PDV.Net.Infra.Data.Context;
 using PDV.Net.IoC;
+using System.Globalization;
 
 namespace PDV.Net.Web
 {
@@ -42,6 +43,15 @@ namespace PDV.Net.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseRequestLocalization();
+
+            System.Globalization.CultureInfo customCulture = new CultureInfo("pt-BR");
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            CultureInfo.DefaultThreadCurrentCulture = customCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = customCulture;
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
