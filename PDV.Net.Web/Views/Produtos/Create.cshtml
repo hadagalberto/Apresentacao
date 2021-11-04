@@ -56,11 +56,11 @@
     <script>
         $(document).ready(() => {
             $('#ValorHelper').change(() => {
-                $('#Valor').val($('#ValorHelper').maskMoney('unmasked')[0]);
+                $('#Valor').val($('#ValorHelper').cleanVal());
             });
 
             $('#CustoHelper').change(() => {
-                $('#Custo').val($('#CustoHelper').maskMoney('unmasked')[0]);
+                $('#Custo').val($('#CustoHelper').cleanVal());
             });
         });
     </script>
