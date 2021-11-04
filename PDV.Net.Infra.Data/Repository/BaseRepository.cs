@@ -19,11 +19,14 @@ namespace PDV.Net.Infra.Data.Repository
             Context = dbContext;
         }
 
-        private bool IsAttached(TEntity entity) => (uint)Context.Entry(entity).State > 0U;
+        private bool IsAttached(TEntity entity) => (uint) Context.Entry(entity).State > 0U;
 
         public virtual async Task DeleteAsync(TEntity entity)
         {
-            EntitySet.Remove(entity);
+            if (!IsAttached(entity))
+                EntitySet.Remove(entity);
+            else
+                Context.Entry(entity).State = EntityState.Deleted;
             await Context.SaveChangesAsync();
         }
 
@@ -44,6 +47,8 @@ namespace PDV.Net.Infra.Data.Repository
         {
             if (!IsAttached(entity))
                 EntitySet.Update(entity);
+            else
+                Context.Entry(entity).State = EntityState.Modified;
             int num = await Context.SaveChangesAsync();
         }
 
