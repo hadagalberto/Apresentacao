@@ -20,7 +20,7 @@ namespace PDV.Net.Web.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "Produtos");
+            return View();
         }
 
         public IActionResult Privacy()

@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using PDV.Net.Domain.DTO;
-using PDV.Net.Domain.Entity;
 using PDV.Net.Domain.Interface.Service;
-using PDV.Net.Infra.Data.Context;
 using PDV.Net.Web.Controllers.Base;
+using System;
+using System.Threading.Tasks;
 
-namespace PDV.Net.Web.Controllers
+namespace PDV.Net.Web.Areas.Produto.Controllers
 {
-    public class ProdutosController : BaseController<IProdutoService, ProdutoDTO, Produto>
+    [Area("Produto")]
+    public class HomeController : BaseController<IProdutoService, ProdutoDTO, Domain.Entity.Produto>
     {
 
-        public ProdutosController(IProdutoService service) : base(service)
+        public HomeController(IProdutoService service) : base(service)
         {
         }
 
