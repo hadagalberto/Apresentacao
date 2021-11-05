@@ -46,8 +46,8 @@ namespace PDV.Net.Web
 
             app.UseRequestLocalization();
 
-            System.Globalization.CultureInfo customCulture = new CultureInfo("pt-BR");
-            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            CultureInfo customCulture = new CultureInfo("pt-BR");
+            customCulture.NumberFormat.NumberDecimalSeparator = ",";
 
             CultureInfo.DefaultThreadCurrentCulture = customCulture;
             CultureInfo.DefaultThreadCurrentUICulture = customCulture;

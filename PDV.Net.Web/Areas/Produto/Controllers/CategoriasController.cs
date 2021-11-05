@@ -1,13 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PDV.Net.Domain.DTO;
+using PDV.Net.Domain.Entity;
+using PDV.Net.Domain.Interface.Service;
+using PDV.Net.Web.Controllers.Base;
 
 namespace PDV.Net.Web.Areas.Produto.Controllers
 {
-    public class CategoriasController : Controller
+    [Area("Produto")]
+    public class CategoriasController : BaseController<ICategoriaProdutoService, CategoriaProdutoDTO, CategoriaProduto>
     {
-        [Area("Produto")]
-        public IActionResult Index()
+
+        public CategoriasController(ICategoriaProdutoService service)
+            : base(service)
         {
-            return View();
         }
+
+
     }
 }

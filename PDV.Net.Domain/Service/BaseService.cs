@@ -15,7 +15,7 @@ namespace PDV.Net.Domain.Service
     {
 
         private readonly IBaseRepository<TEntity> _repository;
-        private readonly IMapper _mapper;
+        protected readonly IMapper _mapper;
 
         public BaseService(IBaseRepository<TEntity> repository, IMapper mapper)
         {

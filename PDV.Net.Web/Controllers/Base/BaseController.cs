@@ -23,13 +23,13 @@ namespace PDV.Net.Web.Controllers.Base
             _service = service;
         }
 
-        public async Task<IActionResult> Index()
+        public virtual async Task<IActionResult> Index()
         {
             return View(await _service.ListAsync());
         }
 
 
-        public IActionResult Create()
+        public virtual async Task<IActionResult> Create()
         {
             return View();
         }

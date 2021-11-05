@@ -16,15 +16,19 @@ namespace PDV.Net.IoC
 
             // Service
             services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<ICategoriaProdutoService, CategoriaProdutoService>();
 
             // Repository
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ICategoriaProdutoRepository, CategoriaProdutoRepository>();
 
             // AutoMapper
 
             var mapperConfig = new MapperConfiguration(mapperConfig =>
             {
                 mapperConfig.CreateMap<Produto, ProdutoDTO>()
+                    .ReverseMap();
+                mapperConfig.CreateMap<CategoriaProduto, CategoriaProdutoDTO>()
                     .ReverseMap();
             });
 

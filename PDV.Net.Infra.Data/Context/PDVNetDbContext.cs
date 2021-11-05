@@ -11,6 +11,7 @@ namespace PDV.Net.Infra.Data.Context
         }
 
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<CategoriaProduto> CategoriasProdutos { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

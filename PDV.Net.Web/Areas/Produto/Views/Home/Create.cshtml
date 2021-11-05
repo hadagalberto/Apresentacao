@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Criar</h1>
 
 <h4>Produto</h4>
 <hr />
@@ -19,20 +19,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Valor" class="control-label"></label>
-                <input asp-for="Valor" type="hidden" />
-                <input asp-for="ValorHelper" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control currency" />
+                <input type="text" class="form-control currency" data-val-required="Campo obrigatório!" id="Valor" name="Valor">
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Custo" class="control-label"></label>
-                <input asp-for="Custo" type="hidden" />
-                <input asp-for="CustoHelper" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control currency" />
+                <input type="text" class="form-control currency" data-val-required="Campo obrigatório!" id="Custo" name="Custo">
                 <span asp-validation-for="Custo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCategoriaProduto" class="control-label"></label>
+                <select asp-for="IdCategoriaProduto" asp-items="@ViewBag.Categorias" class="form-control"></select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -53,15 +55,5 @@
 @section scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-    <script>
-        $(document).ready(() => {
-            $('#ValorHelper').change(() => {
-                $('#Valor').val($('#ValorHelper').cleanVal());
-            });
-
-            $('#CustoHelper').change(() => {
-                $('#Custo').val($('#CustoHelper').cleanVal());
-            });
-        });
-    </script>
+    @*<script src="~/js/produtos/edit.js"></script>*@
 }

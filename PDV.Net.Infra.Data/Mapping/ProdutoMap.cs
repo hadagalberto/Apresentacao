@@ -25,6 +25,10 @@ namespace PDV.Net.Infra.Data.Mapping
             builder.Property(x => x.HoraAtualizacao)
                 .HasDefaultValueSql("GETDATE()")
                 .ValueGeneratedOnAddOrUpdate();
+
+            builder.HasOne(x => x.CategoriaProduto)
+                .WithMany(x => x.Produtos)
+                .HasForeignKey(x => x.IdCategoriaProduto);
         }
     }
 }

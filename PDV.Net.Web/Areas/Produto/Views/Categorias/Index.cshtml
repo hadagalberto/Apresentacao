@@ -1,10 +1,10 @@
-﻿@model IEnumerable<PDV.Net.Domain.DTO.ProdutoDTO>
+﻿@model IEnumerable<PDV.Net.Domain.DTO.CategoriaProdutoDTO>
 
 @{
-    ViewData["Title"] = "Produtos";
+    ViewData["Title"] = "Categorias de Produtos";
 }
 
-<h1>Produtos</h1>
+<h1>Categorias de Produtos</h1>
 
 <p>
     <a asp-action="Create">Novo</a>
@@ -14,15 +14,6 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Custo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Ativo)
@@ -38,20 +29,11 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @item.Valor.ToString("C")
-                </td>
-                <td>
-                    @item.Custo.ToString("C")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Ativo)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a href="#" onclick="confirmDelete('@item.Id')">Deletar</a>
+                    <a href="#" target="_self" onclick="confirmDelete('@item.Id')">Deletar</a>
                 </td>
             </tr>
         }
@@ -69,7 +51,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Tem certeza que deseja deletar o produto?</p>
+                    <p>Tem certeza que deseja deletar a categoria?</p>
                     <input type="hidden" id="itemDelete" name="id" />
                 </div>
                 <div class="modal-footer">
@@ -83,5 +65,5 @@
 
 @section scripts
 {
-    <script src="~/js/produtos/index.js"></script>
+    <script src="~/js/categoriasProdutos/index.js"></script>
 }

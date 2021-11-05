@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PDV.Net.Domain.DTO
 {
@@ -18,6 +19,8 @@ namespace PDV.Net.Domain.DTO
         [MaxLength(250)]
         public string Descricao { get; set; }
         public bool Ativo { get; set; }
+        [Display(Name = "Categoria")]
+        public Guid? IdCategoriaProduto { get; set; }
 
     }
 }
