@@ -22,13 +22,13 @@ namespace PDV.Net.Web.Areas.Produto.Controllers
 
         public override async Task<IActionResult> Create()
         {
-            CarregarCategorias();
+            await Task.Run(CarregarCategorias);
             return View();
         }
 
         public override async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || !id.HasValue)
+            if (id == null || id.Value == Guid.Empty)
             {
                 return NotFound();
             }
