@@ -8,13 +8,13 @@ using PDV.Net.Domain.Entity;
 
 namespace PDV.Net.Infra.Data.Repository
 {
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
+    public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : BaseEntity
     {
         protected DbContext Context { get; }
         protected DbSet<TEntity> EntitySet => Context.Set<TEntity>();
 
-        public BaseRepository(PDVNetDbContext dbContext) 
+        public Repository(PDVNetDbContext dbContext) 
         {
             Context = dbContext;
         }

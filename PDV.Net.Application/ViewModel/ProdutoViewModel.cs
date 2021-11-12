@@ -1,19 +1,17 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PDV.Net.Domain.DTO
+namespace PDV.Net.Application.ViewModel
 {
-    public class ProdutoDTO : BaseDTO
+    public class ProdutoViewModel : BaseViewModel
     {
 
         [Display(Name = "Nome")]
         [MaxLength(50)]
         [Required(ErrorMessage = "Campo obrigatório!")]
         public string Nome { get; set; }
-        public string ValorHelper { get; set; }
         [Required(ErrorMessage = "Campo obrigatório!")]
         public double Valor { get; set; }
-        public string CustoHelper { get; set; }
         public double Custo { get; set; }
         [Display(Name = "Descrição")]
         [MaxLength(250)]

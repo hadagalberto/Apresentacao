@@ -1,4 +1,4 @@
-﻿@model PDV.Net.Domain.DTO.ProdutoDTO
+﻿@model PDV.Net.Application.ViewModel.ProdutoViewModel
 
 @{
     ViewData["Title"] = "Editar Produto";
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                    <input class="form-check-input" asp-for="Ativo" /> Ativo
                 </label>
             </div>
             <input type="hidden" asp-for="Id" />

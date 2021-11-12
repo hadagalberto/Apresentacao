@@ -2,7 +2,7 @@
 
 namespace PDV.Net.Domain.Interface.Repository
 {
-    public interface IProdutoRepository : IBaseRepository<Produto>
+    public interface IProdutoRepository : IRepository<Produto>
     {
     }
 }

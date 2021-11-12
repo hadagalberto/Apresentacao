@@ -1,12 +1,10 @@
-﻿using System.Collections;
+﻿using PDV.Net.Domain.Entity;
 using System.Collections.Generic;
-using PDV.Net.Domain.DTO;
-using PDV.Net.Domain.Entity;
 
 namespace PDV.Net.Domain.Interface.Service
 {
-    public interface ICategoriaProdutoService : IBaseService<CategoriaProdutoDTO, CategoriaProduto>
+    public interface ICategoriaProdutoService : IService<CategoriaProduto>
     {
-        IEnumerable<CategoriaProdutoDTO> ListActive();
+        ICollection<CategoriaProduto> ListActive();
     }
 }

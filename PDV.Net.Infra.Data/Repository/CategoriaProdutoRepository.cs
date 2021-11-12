@@ -6,13 +6,13 @@ using PDV.Net.Infra.Data.Context;
 
 namespace PDV.Net.Infra.Data.Repository
 {
-    public class CategoriaProdutoRepository : BaseRepository<CategoriaProduto>, ICategoriaProdutoRepository
+    public class CategoriaProdutoRepository : Repository<CategoriaProduto>, ICategoriaProdutoRepository
     {
         public CategoriaProdutoRepository(PDVNetDbContext dbContext) : base(dbContext)
         {
         }
 
-        public IEnumerable<CategoriaProduto> ListActive()
+        public ICollection<CategoriaProduto> ListActive()
         {
             return EntitySet.Where(x => x.Ativo).ToList();
         }

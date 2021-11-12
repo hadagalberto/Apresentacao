@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PDV.Net.Domain.DTO;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PDV.Net.Application.Interface;
+using PDV.Net.Application.ViewModel;
 using PDV.Net.Domain.Interface.Service;
 using PDV.Net.Web.Controllers.Base;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace PDV.Net.Web.Areas.Produto.Controllers
 {
     [Area("Produto")]
-    public class HomeController : BaseController<IProdutoService, ProdutoDTO, Domain.Entity.Produto>
+    public class HomeController : BaseController<IProdutoAppService, ProdutoViewModel>
     {
         private readonly ICategoriaProdutoService _categoriaProdutoService;
 
-        public HomeController(IProdutoService service, ICategoriaProdutoService categoriaProdutoService) : base(service)
+        public HomeController(IProdutoAppService appService, ICategoriaProdutoService categoriaProdutoService) : base(appService)
         {
             _categoriaProdutoService = categoriaProdutoService;
         }
@@ -32,13 +33,12 @@ namespace PDV.Net.Web.Areas.Produto.Controllers
                 return NotFound();
             }
 
-            var produto = await _service.GetAsync(id.Value);
+            var produto = await _appService.GetAsync(id.Value);
             if (produto == null)
             {
                 return NotFound();
             }
-            produto.ValorHelper = produto.Valor.ToString();
-            produto.CustoHelper = produto.Custo.ToString();
+
             CarregarCategorias();
 
             return View(produto);

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using PDV.Net.Domain.DTO;
+using PDV.Net.Application.AppService;
+using PDV.Net.Application.Interface;
+using PDV.Net.Application.ViewModel;
 using PDV.Net.Domain.Entity;
 using PDV.Net.Domain.Interface.Repository;
 using PDV.Net.Domain.Interface.Service;
@@ -14,6 +16,10 @@ namespace PDV.Net.IoC
         public static void Register(IServiceCollection services)
         {
 
+            // AppService
+            services.AddScoped<IProdutoAppService, ProdutoAppService>();
+            services.AddScoped<ICategoriaProdutoAppService, CategoriaProdutoAppService>();
+
             // Service
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<ICategoriaProdutoService, CategoriaProdutoService>();
@@ -26,9 +32,9 @@ namespace PDV.Net.IoC
 
             var mapperConfig = new MapperConfiguration(mapperConfig =>
             {
-                mapperConfig.CreateMap<Produto, ProdutoDTO>()
+                mapperConfig.CreateMap<Produto, ProdutoViewModel>()
                     .ReverseMap();
-                mapperConfig.CreateMap<CategoriaProduto, CategoriaProdutoDTO>()
+                mapperConfig.CreateMap<CategoriaProduto, CategoriaProdutoViewModel>()
                     .ReverseMap();
             });
 

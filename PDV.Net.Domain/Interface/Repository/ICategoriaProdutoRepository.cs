@@ -4,8 +4,8 @@ using PDV.Net.Domain.Entity;
 
 namespace PDV.Net.Domain.Interface.Repository
 {
-    public interface ICategoriaProdutoRepository : IBaseRepository<CategoriaProduto>
+    public interface ICategoriaProdutoRepository : IRepository<CategoriaProduto>
     {
-        IEnumerable<CategoriaProduto> ListActive();
+        ICollection<CategoriaProduto> ListActive();
     }
 }

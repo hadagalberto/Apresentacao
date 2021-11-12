@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PDV.Net.Application\PDV.Net.Application.csproj" />
     <ProjectReference Include="..\PDV.Net.Infra.Data\PDV.Net.Infra.Data.csproj" />
     <ProjectReference Include="..\PDV.Net.IoC\PDV.Net.IoC.csproj" />
   </ItemGroup>

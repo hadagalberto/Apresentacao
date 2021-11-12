@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PDV.Net.Application\PDV.Net.Application.csproj" />
     <ProjectReference Include="..\PDV.Net.Domain\PDV.Net.Domain.csproj" />
     <ProjectReference Include="..\PDV.Net.Infra.Data\PDV.Net.Infra.Data.csproj" />
   </ItemGroup>

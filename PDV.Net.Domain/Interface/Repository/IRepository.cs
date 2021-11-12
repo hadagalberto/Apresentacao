@@ -5,7 +5,7 @@ using PDV.Net.Domain.Entity;
 
 namespace PDV.Net.Domain.Interface.Repository
 {
-    public interface IBaseRepository<TEntity> 
+    public interface IRepository<TEntity> 
         where TEntity : BaseEntity
     {
 

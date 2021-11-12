@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PDV.Net.Domain.DTO
+namespace PDV.Net.Application.ViewModel
 {
-    public class CategoriaProdutoDTO : BaseDTO
+    public class CategoriaProdutoViewModel : BaseViewModel
     {
 
         [Required(ErrorMessage = "Campo obrigatório")]

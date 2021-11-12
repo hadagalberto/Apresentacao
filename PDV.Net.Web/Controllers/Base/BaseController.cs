@@ -1,31 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PDV.Net.Domain.DTO;
-using PDV.Net.Domain.Entity;
-using PDV.Net.Domain.Interface.Service;
+using PDV.Net.Application.Interface;
+using System;
+using System.Threading.Tasks;
+using PDV.Net.Application.ViewModel;
 
 namespace PDV.Net.Web.Controllers.Base
 {
-    public class BaseController<Service, DTO, Entity> : Controller
-    where DTO : BaseDTO, new()
-    where Entity : BaseEntity
-    where Service : IBaseService<DTO, Entity>
+    public class BaseController<TAppService, TViewModel> : Controller
+    where TViewModel : BaseViewModel, new()
+    where TAppService : IAppService<TViewModel>
     {
 
-        protected readonly Service _service;
+        protected readonly TAppService _appService;
 
-        public BaseController(Service service)
+        public BaseController(TAppService appService)
         {
-            _service = service;
+            _appService = appService;
         }
 
         public virtual async Task<IActionResult> Index()
         {
-            return View(await _service.ListAsync());
+            return View(await _appService.ListAsync());
         }
 
 
@@ -36,12 +32,12 @@ namespace PDV.Net.Web.Controllers.Base
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual async Task<IActionResult> Create(DTO dto)
+        public virtual async Task<IActionResult> Create(TViewModel dto)
         {
             if (ModelState.IsValid)
             {
                 dto.Id = Guid.NewGuid();
-                await _service.CreateAsync(dto);
+                await _appService.CreateAsync(dto);
                 return RedirectToAction(nameof(Index));
             }
             return RedirectToAction(nameof(Index));
@@ -54,7 +50,7 @@ namespace PDV.Net.Web.Controllers.Base
                 return NotFound();
             }
 
-            var dto = await _service.GetAsync(id.Value);
+            var dto = await _appService.GetAsync(id.Value);
             
             if (dto == null)
             {
@@ -65,7 +61,7 @@ namespace PDV.Net.Web.Controllers.Base
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual async Task<IActionResult> Edit(Guid id, DTO dto)
+        public virtual async Task<IActionResult> Edit(Guid id, TViewModel dto)
         {
             if (id != dto.Id)
             {
@@ -76,7 +72,7 @@ namespace PDV.Net.Web.Controllers.Base
             {
                 try
                 {
-                    await _service.UpdateAsync(dto);
+                    await _appService.UpdateAsync(dto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -91,10 +87,10 @@ namespace PDV.Net.Web.Controllers.Base
         [ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var dto = new DTO { Id = id };
+            var dto = new TViewModel { Id = id };
             if (dto != null)
             {
-                await _service.DeleteAsync(dto);
+                await _appService.DeleteAsync(dto);
             }
             return RedirectToAction(nameof(Index));
         }
