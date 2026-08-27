@@ -11,7 +11,7 @@ env:
   WORKING_DIRECTORY: PDV.Net.Web
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, x64]
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
